@@ -4,6 +4,7 @@ export default class Count extends Component {
     increment = () => {
         //拿到用户选择的值
         const { value } = this.numberNode
+        this.props.increment('increment', value * 1)
     }
 
     decrement = () => {
@@ -25,7 +26,7 @@ export default class Count extends Component {
         console.log(this.props);
         return (
             <div>
-                <h2>当前求和为：？？？</h2>
+                <h2>当前求和为: {this.props.sum}</h2>
                 <select ref={c => this.numberNode = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>

@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux'
 import countReducer from './count_reducer'
 //引入用于支持异步action的redux-thunk中间件
 import thunk from 'redux-thunk'
-
+//创建store
 const store = createStore(countReducer, applyMiddleware(thunk));
 
 export default store

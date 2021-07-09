@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 //引入connect函数，用于：连接UI与redex、生成容器组件
 import { connect } from 'react-redux'
 //引入action回调函数
-import { createCountAction, createCountAsyncAction } from '../../redux/count_action'
+import { createCountAction, createCountAsyncAction } from '../../redux/actions/count'
 
 //定义Count的UI组件
 class Count extends Component {
@@ -37,6 +37,7 @@ class Count extends Component {
     render() {
         return (
             <div>
+                <h1>我是Count组件</h1>
                 <h2>当前求和为: {this.props.sum}</h2>
                 <select ref={c => this.numberNode = c}>
                     <option value="1">1</option>
@@ -54,7 +55,7 @@ class Count extends Component {
 
 //定义Count组件的容器组件
 export default connect(
-    state => ({ sum: state }),
+    state => ({ sum: state.countReducer }),
     {
         createCountAction,
         createCountAsyncAction

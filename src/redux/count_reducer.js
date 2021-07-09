@@ -7,7 +7,6 @@ export default function countReducer(preState = 0, action) {
 
     //从action对象中获取type、data
     const { type, data } = action
-    console.log(preState, action);
     
     //根据type，决定如何操作状态
     switch (type) {

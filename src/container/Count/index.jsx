@@ -35,7 +35,6 @@ class Count extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <h2>当前求和为: {this.props.sum}</h2>

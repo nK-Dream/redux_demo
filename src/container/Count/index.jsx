@@ -4,41 +4,42 @@ import React, { Component } from 'react'
 //引入connect函数，用于：连接UI与redex、生成容器组件
 import { connect } from 'react-redux'
 //引入action回调函数
-import { createCountAction, createCountAsyncAction } from '../../redux/actions/count'
+import { increment, decrement,incrementAsync } from '../../redux/actions/count'
 
 //定义Count的UI组件
 class Count extends Component {
     increment = () => {
         //拿到用户选择的值
         const { value } = this.numberNode
-        this.props.createCountAction('increment', value * 1)
+        this.props.increment(value * 1)
     }
 
     decrement = () => {
         //拿到用户选择的值
         const { value } = this.numberNode
-        this.props.createCountAction('decrement', value * 1)
+        this.props.decrement(value * 1)
     }
 
     incrementIfOdd = () => {
         //拿到用户选择的值
         const { value } = this.numberNode
         if (this.props.sum % 2 !== 0) {
-            this.props.createCountAction('increment', value * 1)
+            this.props.increment( value * 1)
         }
     }
 
     incrementAsync = () => {
         //拿到用户选择的值
         const { value } = this.numberNode
-        this.props.createCountAsyncAction('increment', value * 1, 500)
+        this.props.incrementAsync(value * 1, 500)
     }
 
     render() {
         return (
             <div>
                 <h1>我是Count组件</h1>
-                <h2>当前求和为: {this.props.sum}</h2>
+                <h2>当前总人数为：{this.props.totalPerson}</h2>
+                <h3>当前求和为: {this.props.sum}</h3>
                 <select ref={c => this.numberNode = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -55,11 +56,8 @@ class Count extends Component {
 
 //定义Count组件的容器组件
 export default connect(
-    state => ({ sum: state.countReducer }),
-    {
-        createCountAction,
-        createCountAsyncAction
-    }
+    state => ({ sum: state.sum, totalPerson: state.persons.length }),
+    {increment,decrement,incrementAsync}
 )(Count)
 
 

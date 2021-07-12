@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {addPerson} from '../../redux/actions/person'
+import { addPerson } from '../../redux/actions/person'
 
 class Person extends Component {
     state = {
@@ -14,7 +14,7 @@ class Person extends Component {
     }
     saveData = type => e => this.setState({ [type]: e.target.value })
     render() {
-        const { sum, personList } = this.props
+        const { sum, persons } = this.props
         return (
             <div>
                 <h1>我是Person组件</h1>
@@ -24,7 +24,7 @@ class Person extends Component {
                 <button onClick={this.addPerson}>添加</button>
                 <ul>
                     {
-                        personList.map((personObj, index) => <li key={index}>{personObj.name} - {personObj.age}</li>)
+                        persons.map((personObj, index) => <li key={index}>{personObj.name} - {personObj.age}</li>)
                     }
                 </ul>
             </div>
@@ -33,8 +33,6 @@ class Person extends Component {
 }
 
 export default connect(
-    state => ({ sum: state.countReducer, personList: state.pensonReducer }),
-    {
-        addPerson
-    }
+    state => ({ sum: state.sum, persons: state.persons }),
+    { addPerson }
 )(Person)

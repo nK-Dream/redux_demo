@@ -1,11 +1,14 @@
  //该文件是用于定义创建action的函数
 
-export const createCountAction = (type,data) => ({type,data})
+import {INCREMENT,DECREMNET} from '../contant'
 
-export const createCountAsyncAction = (type,data,time) =>{
+export const increment = ( data) => ({ type: INCREMENT,data})
+export const decrement = (data) => ({ type: DECREMNET, data })
+
+export const incrementAsync = (data,time) =>{
     return (dispatch) => {
         setTimeout(() => {
-            dispatch(createCountAction(type, data))
+            dispatch(increment(data))
         }, time);
     }
 }
